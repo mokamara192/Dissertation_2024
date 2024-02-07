@@ -1,0 +1,222 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Voting Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static '/assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="stylesheet" type="text/css" href="{% static '/assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/assets/vendors/css/vendor.bundle.base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/assets/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static '/assets/images/vote-logo.png' %}" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- Boosteap 4 css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css">
+  
+  </head>
+  <body>
+
+    
+    <div class="container-scroller">
+      
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="{% url 'adminpage' %}"><img src="{% static '/assets/images/Central-logo.png' %}" alt="logo" style="height: 40px; width: 40px;"/> Online Voting</a>
+          <a class="navbar-brand brand-logo-mini" href="{% url 'adminpage' %}"><img src="{% static '/assets/images/vote-logo.png' %}" alt="logo" style="height: 50px; width: 50px;"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">                
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black">EC Admin</p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'profile' %}">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Profile </a>
+              </div>
+            </li>
+            <li class="nav-item nav-logout d-none d-lg-block">
+              <a class="nav-link" href="{% url 'logout' %}">
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="font-size: 5px;">
+          <ul class="nav">            
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'adminpage' %}">
+                <span class="menu-title"><h4>Dashboard</h4></span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title"><h5>Candidates</h5></span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-circle menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'Add_candidate' %}">Add Candidate</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'View_candidate' %}">View Candidate</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
+                <span class="menu-title"><h5>Voters</h5></span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic1">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'Add_voter' %}">Add Voters</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'View_voter' %}">View Voters</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <span class="menu-title"><h5>Positions</h5></span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-box menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'Add_position' %}">Add Position</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'View_position' %}">View Positions</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic3">
+                <span class="menu-title"><h5>Voted</h5></span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-check menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic3">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'View_votedUsers' %}">Already Voted</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="#">Typography</a></li> -->
+                </ul>
+              </div>
+            </li>
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false" aria-controls="ui-basic4">
+                <span class="menu-title"><h5>Results</h5></span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-chart-bar menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-basic4">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'View_result' %}">View Results</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'Create_report' %}">Create Report</a></li>
+                </ul>
+              </div>
+            </li> {% endcomment %}
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container">
+          <marquee behavior="" direction=""><h2>Central University Online Voting System</h2></marquee>
+            <div class="col-md-10 offset-md-1 mt-5">
+              <div class="jumbotron">
+                <h4 class="display-6">Update Candidate</h4>
+                <p class="lead font-italic">Update relevant information about this candidate.</p>
+                <hr class="my-4">
+                <!-- {% block content %} -->
+                  <form method="post" action="{% url 'update_candidate' candidate.id %}" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}  
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <!-- {% endblock %}   -->
+              </div>
+            </div>
+        </div>
+            
+
+  
+
+  <!-- Boostrap 4 js -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
+
+    <script src="{% static 'voting/js/slidemenu.js' %}"></script>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bs-animation.js' %}"></script>
+    <script src="{% static 'js/Simple-Slider.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/Animated-Pretty-Product-List.js' %}"></script>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <script src="{% static 'js/bs-charts.js' %}"></script>
+
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static '/assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- <script src="{% static '/assets/vendors/chart.js/Chart.min.js' %}"></script> -->
+    <script src="{% static '/assets/js/jquery.cookie.js' %}" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static '/assets/js/off-canvas.js' %}"></script>
+    <script src="{% static '/assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static '/assets/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static '/assets/js/dashboard.js' %}"></script>
+    <script src="{% static '/assets/js/todolist.js' %}"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

@@ -1,0 +1,74 @@
+Creating the complete online voting system is a complex task that involves various components, including web development, database management, security measures, and more. This will provide you with a simplified overview of how you might approach building and running the online voting system using Django.
+To download a Django source code project and run it, you can follow these general steps. I'll assume that the project is hosted on a Git repository.
+
+Downloading the Project
+1. Install Git:
+   If you haven't installed Git yet, download and install it from [Git's official website](https://git-scm.com/).
+2. Open a Terminal or Command Prompt:
+   Open the terminal or command prompt on your machine.
+3. Navigate to the Desired Directory:
+   Use the `cd` command to navigate to the directory where you want to download the project. For example:
+   ```bash
+   cd /path/to/your/directory
+   ```
+4. Clone the Repository:
+   Use the `git clone` command to clone the project's repository. Replace `<repository-url>` with the actual URL of the project repository.
+   ```bash
+   git clone <repository-url>
+   ```
+
+Setting up the Django Project
+1. Navigate to Project Directory:
+   Move into the directory of the downloaded project:
+   ```bash
+   cd your_project_directory
+   ```
+2. Install Virtual Environment (Optional, but recommended):
+   It's a good practice to use a virtual environment to isolate your project dependencies. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+3. Activate Virtual Environment:
+   Activate the virtual environment:
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On Unix or MacOS
+     ```bash
+     source venv/bin/activate
+     ```
+4. Install Project Dependencies:
+   Check if there is a `requirements.txt` file in the project directory. If it exists, install the dependencies using `pip`:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Database Setup:
+   Set up the database by running the migration commands:
+   ```bash
+   python manage.py migrate
+   ```
+6. Create Superuser (Optional):
+   If the project involves user authentication, you might want to create a superuser account to access the Django admin panel:
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+Running the Django Project
+1. Run the Development Server:
+   Start the Django development server:
+   ```bash
+   python manage.py runserver
+   ```
+2. Access the Application:
+   Open a web browser and go to `http://127.0.0.1:8000/` (or the URL provided in the console output). If you created a superuser, you can also access the admin panel at `http://127.0.0.1:8000/admin/`.
+3. Explore the Application:
+   Navigate through the application and interact with the features provided by the online voting system.
+
+Remember to refer to the project's documentation or README file for any specific instructions provided by the project maintainers. If the project requires additional steps or configurations, they should be documented by the project creators.
+
+
+LOGIN CRIDINTIALS
+ADMIN
+username: admin
+password: admin
